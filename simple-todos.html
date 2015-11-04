@@ -1,0 +1,38 @@
+<head>
+	<title>TODO list</title>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+
+			<div class="login">
+				{{> loginButtons}}
+			</div>
+
+			{{#if currentUser}}
+				<h1>TODO list</h1>
+
+				<form class="new-task">
+					<input type="text" name="text" placeholder="Type to add new tasks" />
+				</form>
+			{{else}}
+				<h1>You are not currently logged in!</h1>
+			{{/if}}
+		</header>
+
+		<ul>
+			{{#each getAllTasks}}
+			{{> task}}
+			{{/each}}
+		</ul>
+	</div>
+</body>
+
+<template name="task">
+	<li class="{{#if checked}}checked{{/if}} row-item">
+		<input type="checkbox" class="{{checked}} toggle-checked" />
+		<button class="delete">&times;</button>
+		<span class="text">{{text}}</span>
+	</li>
+</template>
